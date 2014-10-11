@@ -11,7 +11,10 @@
   <p><b>Cores:</b> {{info.cores}}</p>
   <p><b>Total Memory:</b> {{info.memory_total/1024/1024/1024}}G</p>
 
-  <h2>Graphs:</h2>
+  <h2>Usage Monitor:</h2>
   
+
+  <h2>Processes</h2>
+  <ul ng-repeat="process in pids"><b>{{process.pid}} - </b>{{process.name}}</ul>
 
 </div>

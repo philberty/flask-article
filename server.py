@@ -52,13 +52,16 @@ def getHostStats():
         }
     )
 
-@app.route("/api/processes")
+@app.route("/api/hostpids")
 def getProcessList():
-    return jsonify({'pids': psutil.pids()})
+    pids = []
+    for i in psutil.process_iter():
+        pids.append(i.as_dict(attrs=['name', 'pid', 'username', 'num_threads']))
+    return jsonify({'pids': pids})
 
 @app.route("/api/process/<path:pid>")
 def getProcessStats(pid):
     return jsonify(None)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

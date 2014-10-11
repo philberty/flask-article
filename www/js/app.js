@@ -45,17 +45,24 @@ define('app', ["flot", "angular", "angularRoute"], function($, angular)
     )
 
     app.controller('host', function($scope, $interval, $http) {
-	$interval(function() {
+	var hostInfo = function() {
 	    $http.get('/api/hostinfo').success(function(data) {
 		$scope.info = data
 	    })
-	}, 1000)
-
-	$interval(function() {
+	}
+	var hostStats = function() {
 	    $http.get('/api/hoststats').success(function(data) {
 		$scope.stats = data
-	    }, 500)
-	})
+	    })
+	}
+	var hostPids = function() {
+	    $http.get('/api/hostpids').success(function(data) {
+		$scope.pids = data['pids']
+	    })
+	}
+	$interval(hostInfo, 2000)
+	$interval(hostStats, 1000)
+	$interval(hostPids, 3000)
     })
 
     angular.bootstrap(document, ['StatsApp']);
