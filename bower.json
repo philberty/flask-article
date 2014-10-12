@@ -3,9 +3,7 @@
     "private": true,
     "dependencies": {
 	"requirejs": "latest",
-	"flot": "latest",
 	"angular": "1.2.x",
-	"angular-route": "~1.2.x",
-	"angular-resource": "~1.2.x"
+	"angular-route": "~1.2.x"
     }
 }
